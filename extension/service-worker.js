@@ -1,0 +1,5 @@
+chrome.runtime.onInstalled.addListener(()=>chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}).catch(console.error));
+chrome.runtime.onMessage.addListener((message,_sender,sendResponse)=>{
+  const paths={DRIX_API_REQUEST:'/api/copilot/analyze',DRIX_PARTNER_RESEARCH:'/api/copilot/partner-profile'};const path=paths[message?.type];if(!path)return false;
+  chrome.storage.sync.get(['apiUrl','apiKey']).then(async settings=>{const base=(settings.apiUrl||'http://localhost:8410').replace(/\/+$/,'');const headers={'Content-Type':'application/json'};if(settings.apiKey)headers['x-api-key']=settings.apiKey;const response=await fetch(base+path,{method:'POST',headers,body:JSON.stringify(message.payload)});const data=await response.json().catch(()=>({error:`Server returned HTTP ${response.status}`}));if(!response.ok)throw new Error(data.error||`Server returned HTTP ${response.status}`);sendResponse({ok:true,data})}).catch(error=>sendResponse({ok:false,error:error.message}));return true;
+});

@@ -1,0 +1,20 @@
+{
+  "name": "drix-linkedin-copilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LinkedIn research and reply copilot powered by DRiX and TDE",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js && node --check src/copilot.js && node --check extension/service-worker.js && node --check extension/content.js && node --check extension/sidepanel.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
