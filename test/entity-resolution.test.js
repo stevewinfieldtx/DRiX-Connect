@@ -1,0 +1,3 @@
+const test=require('node:test'),assert=require('node:assert/strict');const{confidence}=require('../src/copilot');const{scoreCandidate}=require('../src/company-url');
+test('normalizes model confidence fractions to percentages',()=>{assert.equal(confidence(.95),95);assert.equal(confidence(95),95)});
+test('penalizes education domains for a consulting target',()=>{const page={companyName:'EVIT',companyIdentity:{location:'Hanoi, Vietnam',industry:'IT Services and IT Consulting'}};assert.ok(scoreCandidate('https://evit-org.com',page,'EVIT Organization - AI automation','Hanoi Vietnam')>scoreCandidate('https://evit.edu',page,'East Valley Institute of Technology','Arizona school education'))});
