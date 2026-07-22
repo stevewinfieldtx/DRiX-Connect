@@ -2,11 +2,11 @@
   "manifest_version": 3,
   "name": "DRiX LinkedIn Copilot",
   "version": "0.1.5",
-  "description": "Research a LinkedIn prospect or analyze a visible message thread with DRiX.",
+  "description": "Research a LinkedIn company, analyze a professional, or prepare a grounded message reply with DRiX.",
   "permissions": ["activeTab", "sidePanel", "storage", "scripting"],
   "host_permissions": ["https://www.linkedin.com/*", "http://localhost:8410/*", "https://*/*"],
   "background": { "service_worker": "service-worker.js" },
   "action": { "default_title": "Open DRiX Copilot" },
   "side_panel": { "default_path": "sidepanel.html" },
-  "content_scripts": [{ "matches": ["https://www.linkedin.com/*"], "js": ["content.js"], "run_at": "document_idle" }]
+  "content_scripts": [{ "matches": ["https://www.linkedin.com/*"], "js": ["content.js", "person-content.js"], "run_at": "document_idle" }]
 }
