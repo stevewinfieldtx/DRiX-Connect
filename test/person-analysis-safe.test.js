@@ -1,0 +1,2 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+test('person decision influence wording never treats a title as proof of budget authority',()=>{const wording='Likely has substantial strategic influence over partnerships and company direction; specific purchasing or budget authority is not confirmed.';assert.doesNotMatch(wording,/full budget authority|ultimate decision-maker/i);assert.match(wording,/not confirmed/)});
